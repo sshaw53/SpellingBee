@@ -144,19 +144,11 @@ public class SpellingBee {
     // TODO: For each word in words, use binary search to see if it is in the dictionary.
     //  If it is not in the dictionary, remove it from words.
     public void checkWords() {
-        /*
-        for (String word: words) {
-            // Calls binary search to see if the word is in the dictionary
-            // If it is not in the dictionary, it will be removed
-            if (!binarySearch(word, 0, DICTIONARY_SIZE))
-                words.remove(word);
-        }
-         */
         int i = 0;
         while(i < words.size()) {
             // Calls binary search to see if the word is in the dictionary
             // If it is not in the dictionary, it will be removed
-            if (!binarySearch(words.get(i), 0, DICTIONARY_SIZE))
+            if (!binarySearch(words.get(i), 0, DICTIONARY_SIZE - 1))
                 words.remove(words.get(i));
             else
                 i++;
@@ -167,7 +159,7 @@ public class SpellingBee {
         // Base Case is when there is one element to check and it equals the word or doesn't
         if (high - low == 0 && word.equals(DICTIONARY[low]))
             return true;
-        else if (high - low == 0)
+        if (high < low)
             return false;
 
         // Compares the word to the middle element: if it is equal to the word, returns true
